@@ -19,19 +19,25 @@ const getWeather = (position) => {
 let tempUnitCelsius = true;
 
 const onSuccess = (response) => {
-	// let locElement = `${response.coord.lon > 0 ? response.coord.lon + "E": -response.coord.lon + "W"}, ${response.coord.lat > 0 ? response.coord.lat + "N" : -response.coord.lat + "S"}`;
-  // $('#displayLocation').text(locElement);
-  $('#displayLocation').text("Springfield, US");
+  // display the location
+	let locElement = `${response.coord.lon > 0 ? response.coord.lon + "E": -response.coord.lon + "W"}, ${response.coord.lat > 0 ? response.coord.lat + "N" : -response.coord.lat + "S"}`;
+  $('#displayLocation').text(locElement);
+
 	// display the weather condition here.  
 	$('#displayWeather').text(response.weather[0].main);
-  $('#displayTemp').text(response.main.temp);  
+  $('#displayTemp').text(response.main.temp);
+
+  let weatherIcon = document.createElement('img'); 
+  weatherIcon.setAttribute('src', response.weather[0].icon);
+  weatherIcon.setAttribute('alt', response.weather[0].description);
+  $('#displayWeatherIcon').append(weatherIcon);
 
   $('#tempUnit').click(() => {
     if (tempUnitCelsius) {    
-      $('#displayTemp').text(32 + response.main.temp * 9 / 5);
+      $('#displayTemp').text(32 + formatDecimal(response.main.temp) * 9 / 5);
       $('#tempUnit').text("F");
     } else {
-      $('#displayTemp').text(response.main.temp);
+      $('#displayTemp').text(formatDecimal(response.main.temp));
       $('#tempUnit').text("C");
     }
     tempUnitCelsius = !tempUnitCelsius;
@@ -39,6 +45,10 @@ const onSuccess = (response) => {
 
   // console.log(response);
   // debugger;
+}
+
+const formatDecimal = (num) => {
+  return Math.round(num*10)/10;
 }
 
 
