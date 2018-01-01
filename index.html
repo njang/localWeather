@@ -2,7 +2,8 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<!-- <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon"> -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
@@ -11,17 +12,19 @@
 	<!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
 	<title>Local Weather</title>
 </head>
-<body>
+<body class="bg-dark text-white text-center">
 	<div>
-		<h1>Free Code Camp</h1>
-		<h2>Weather App</h2>
-		<span id="displayLocation">--</span>
-	<div>	
-		<span id="displayTemp">--</span><span>&deg;</span>
-		<span id="tempUnit">C</span>
-	</div>
-		<div id="displayWeather">--</div>
-		<div id="displayWeatherIcon"></div>
+		<h1 class="display-2 my-2">Free Code Camp</h1>
+		<h2 class="display-3 my-2">Weather App</h2>
+		<h3 id="displayLocation" class="my-2"></h3>
+		<h3>	
+			<div class="my-1">
+				<span id="displayTemp"></span>
+				<span id="tempUnit" class="text-primary"></span>
+			</div>
+			<div id="displayWeather" class="my-1"></div>
+			<div id="displayWeatherIcon" class="my-1"></div>
+		</h3>
 	</div>
 	
 	<script type="text/javascript" src="app.js"></script>

@@ -26,6 +26,7 @@ const onSuccess = (response) => {
 	// display the weather condition here.  
 	$('#displayWeather').text(response.weather[0].main);
   $('#displayTemp').text(formatDecimal(response.main.temp));
+  $('#tempUnit').html("&deg;C");
 
   let weatherIcon = document.createElement('img'); 
   weatherIcon.setAttribute('src', response.weather[0].icon);
@@ -34,23 +35,18 @@ const onSuccess = (response) => {
 
   $('#tempUnit').click(() => {
     if (tempUnitCelsius) {    
-      $('#displayTemp').text(32 + formatDecimal(response.main.temp) * 9 / 5);
-      $('#tempUnit').text("F");
+      $('#displayTemp').text(32 + formatDecimal(response.main.temp * 9 / 5));
+      $('#tempUnit').html("&deg;F");
     } else {
       $('#displayTemp').text(formatDecimal(response.main.temp));
-      $('#tempUnit').text("C");
+      $('#tempUnit').html("&deg;C");
     }
     tempUnitCelsius = !tempUnitCelsius;
   });
-
-  // console.log(response);
-  // debugger;
 }
 
 const formatDecimal = (num) => {
-  return Math.round(num*10)/10;
+  return Math.round(num * 10) / 10;
 }
-
-
 
 $(document).ready(getLocation());
