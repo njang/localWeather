@@ -5,7 +5,7 @@ const getLocation = () => {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(getWeather);
   } else {
-    x.innerHTML = "Geolocation is not supported by this browser.";
+    alert("Geolocation is not supported by this browser.");
   }
 }
 
@@ -16,18 +16,17 @@ const getWeather = (position) => {
 	});
 }
 
-let z;
-
 const onSuccess = (response) => {
 	// display the weather condition here.
-	z = response;
-	let y = `Temp: ${response.main.temp}`;
-	$('#display').text = y;
-  console.log(response);
+	let tempElement = `${response.weather[0].main}, Temp: ${response.main.temp}, Pressure: ${response.main.pressure}, Humidity: ${response.main.humidity}%`;
+	$('#displayWeather').text(tempElement);
+  let locElement = `${response.coord.lon > 0 ? response.coord.lon + "E": -response.coord.lon + "W"}, ${response.coord.lat > 0 ? response.coord.lat + "N" : -response.coord.lat + "S"}`;
+  $('#displayLocation').text(locElement);
+  // console.log(response);
   // debugger;
 }
 
-const convert = () => {
+const convertUnit = () => {
 
 }
 
