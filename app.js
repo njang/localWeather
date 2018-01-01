@@ -16,18 +16,31 @@ const getWeather = (position) => {
 	});
 }
 
+let tempUnitCelsius = true;
+
 const onSuccess = (response) => {
-	// display the weather condition here.
-	let tempElement = `${response.weather[0].main}, Temp: ${response.main.temp}, Pressure: ${response.main.pressure}, Humidity: ${response.main.humidity}%`;
-	$('#displayWeather').text(tempElement);
-  let locElement = `${response.coord.lon > 0 ? response.coord.lon + "E": -response.coord.lon + "W"}, ${response.coord.lat > 0 ? response.coord.lat + "N" : -response.coord.lat + "S"}`;
-  $('#displayLocation').text(locElement);
+	// let locElement = `${response.coord.lon > 0 ? response.coord.lon + "E": -response.coord.lon + "W"}, ${response.coord.lat > 0 ? response.coord.lat + "N" : -response.coord.lat + "S"}`;
+  // $('#displayLocation').text(locElement);
+  $('#displayLocation').text("Springfield, US");
+	// display the weather condition here.  
+	$('#displayWeather').text(response.weather[0].main);
+  $('#displayTemp').text(response.main.temp);  
+
+  $('#tempUnit').click(() => {
+    if (tempUnitCelsius) {    
+      $('#displayTemp').text(32 + response.main.temp * 9 / 5);
+      $('#tempUnit').text("F");
+    } else {
+      $('#displayTemp').text(response.main.temp);
+      $('#tempUnit').text("C");
+    }
+    tempUnitCelsius = !tempUnitCelsius;
+  });
+
   // console.log(response);
   // debugger;
 }
 
-const convertUnit = () => {
 
-}
 
 $(document).ready(getLocation());
