@@ -25,7 +25,7 @@ const onSuccess = (response) => {
 
 	// display the weather condition here.  
 	$('#displayWeather').text(response.weather[0].main);
-  $('#displayTemp').text(response.main.temp);
+  $('#displayTemp').text(formatDecimal(response.main.temp));
 
   let weatherIcon = document.createElement('img'); 
   weatherIcon.setAttribute('src', response.weather[0].icon);
